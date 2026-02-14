@@ -1,0 +1,4 @@
+**/src/main/resources/firebase/*.json**/firebase/*.json
+**/target/
+**/firebase/*.json
+**/target/
