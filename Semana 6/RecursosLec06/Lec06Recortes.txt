@@ -1,0 +1,35 @@
+Estos recortes son de "emergencia", no sería adecuado sólo pasarlo a los estudiantes...
+
+
+Recorte 001 Producto.java
+===========
+
+//private Integer idCategoria;
+
+@ManyToOne
+@JoinColumn(name = "id_categoria")
+private Categoria categoria;
+
+
+Recorte 002 Categoria.java
+===========
+
+import java.util.List;
+
+// Relación de uno a muchos con la clase Producto
+// Sin "cascade" ni "orphanRemoval" para evitar la propagación de operaciones.
+@OneToMany(mappedBy = "categoria")
+private List<Producto> productos;
+
+
+Recorte 003 fragmentos.html (en producto)
+===========
+
+(aproximadamente en la línea 34)
+<select name="categoria.idCategoria"
+
+(aproximadamente en la línea 109)
+<td>[[${p.categoria.descripcion}]]</td>
+
+(aproximadamente en la línea 165)
+ <select name="categoria.idCategoria" th:field="*{categoria.idCategoria}"
