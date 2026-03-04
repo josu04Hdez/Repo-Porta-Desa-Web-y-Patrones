@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container mt-3">
+    <div class="row">
+
+        <!-- Consulta Derivada -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaDerivada}" method="post">
+                <h4>Consultas Derivadas</h4>
+                <label>Precio Inferior</label>
+                <input type="number" name="precioInf" class="form-control"/>
+                <label>Precio Superior</label>
+                <input type="number" name="precioSup" class="form-control"/>
+                <br>
+                <button type="submit" class="btn btn-primary">
+                    Consultas Derivadas
+                </button>
+            </form>
+        </div>
+
+        <!-- Consulta JPQL -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaJPQL}" method="post">
+                <h4>Consultas JPQL</h4>
+                <label>Precio Inferior</label>
+                <input type="number" name="precioInf" class="form-control"/>
+                <label>Precio Superior</label>
+                <input type="number" name="precioSup" class="form-control"/>
+                <br>
+                <button type="submit" class="btn btn-warning">
+                    Consultas JPQL
+                </button>
+            </form>
+        </div>
+
+        <!-- Consulta SQL -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaSQL}" method="post">
+                <h4>Consultas SQL</h4>
+                <label>Precio Inferior</label>
+                <input type="number" name="precioInf" class="form-control"/>
+                <label>Precio Superior</label>
+                <input type="number" name="precioSup" class="form-control"/>
+                <br>
+                <button type="submit" class="btn btn-success">
+                    Consultas SQL
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3" th:each="p : ${productos}">
+            <div class="card">
+                <img th:src="${p.rutaImagen}" class="card-img-top">
+                <div class="card-body">
+                    <h5 th:text="${p.descripcion}"></h5>
+                    <p th:text="${p.precio}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>
