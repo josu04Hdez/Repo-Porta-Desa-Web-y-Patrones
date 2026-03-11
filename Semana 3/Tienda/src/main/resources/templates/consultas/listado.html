@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{general/fragmentos :: head}"></head>
-
 <body>
 <header th:replace="~{general/fragmentos :: header}"></header>
 
 <div class="container mt-3">
     <div class="row">
 
-        <!-- Consulta Derivada -->
+        <!-- CONSULTAS ANTERIORES -->
         <div class="col-md-4">
             <form th:action="@{/consultas/consultaDerivada}" method="post">
-                <h4>Consultas Derivadas</h4>
+                <h4>Consulta Derivada</h4>
                 <label>Precio Inferior</label>
-                <input type="number" name="precioInf" class="form-control"/>
+                <input type="number" name="precioInf" class="form-control" required/>
                 <label>Precio Superior</label>
-                <input type="number" name="precioSup" class="form-control"/>
+                <input type="number" name="precioSup" class="form-control" required/>
                 <br>
-                <button type="submit" class="btn btn-primary">
-                    Consultas Derivadas
-                </button>
+                <button type="submit" class="btn btn-primary">Consulta Derivada</button>
             </form>
         </div>
 
-        <!-- Consulta JPQL -->
         <div class="col-md-4">
             <form th:action="@{/consultas/consultaJPQL}" method="post">
-                <h4>Consultas JPQL</h4>
+                <h4>Consulta JPQL</h4>
                 <label>Precio Inferior</label>
-                <input type="number" name="precioInf" class="form-control"/>
+                <input type="number" name="precioInf" class="form-control" required/>
                 <label>Precio Superior</label>
-                <input type="number" name="precioSup" class="form-control"/>
+                <input type="number" name="precioSup" class="form-control" required/>
                 <br>
-                <button type="submit" class="btn btn-warning">
-                    Consultas JPQL
-                </button>
+                <button type="submit" class="btn btn-warning">Consulta JPQL</button>
             </form>
         </div>
 
-        <!-- Consulta SQL -->
         <div class="col-md-4">
             <form th:action="@{/consultas/consultaSQL}" method="post">
-                <h4>Consultas SQL</h4>
+                <h4>Consulta SQL</h4>
                 <label>Precio Inferior</label>
-                <input type="number" name="precioInf" class="form-control"/>
+                <input type="number" name="precioInf" class="form-control" required/>
                 <label>Precio Superior</label>
-                <input type="number" name="precioSup" class="form-control"/>
+                <input type="number" name="precioSup" class="form-control" required/>
                 <br>
-                <button type="submit" class="btn btn-success">
-                    Consultas SQL
-                </button>
+                <button type="submit" class="btn btn-success">Consulta SQL</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<hr class="my-4"/>
+
+<div class="container mt-3">
+    <div class="row">
+
+        <!-- CONSULTA AVANZADA DERIVADA -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaAvanzadaDerivada}" method="post">
+                <h4>Consulta Avanzada Derivada</h4>
+                <label>Precio Mínimo</label>
+                <input type="number" step="0.01" name="precioMin" class="form-control" required/>
+                <label>Precio Máximo</label>
+                <input type="number" step="0.01" name="precioMax" class="form-control" required/>
+                <label>Existencias Mínimas</label>
+                <input type="number" name="existenciasMin" class="form-control" required/>
+                <label>Descripción Categoría</label>
+                <input type="text" name="descripcionCategoria" class="form-control" required/>
+                <br>
+                <button type="submit" class="btn btn-primary">Avanzada Derivada</button>
+            </form>
+        </div>
+
+        <!-- CONSULTA AVANZADA JPQL -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaAvanzadaJPQL}" method="post">
+                <h4>Consulta Avanzada JPQL</h4>
+                <label>Precio Mínimo</label>
+                <input type="number" step="0.01" name="precioMin" class="form-control" required/>
+                <label>Precio Máximo</label>
+                <input type="number" step="0.01" name="precioMax" class="form-control" required/>
+                <label>Existencias Mínimas</label>
+                <input type="number" name="existenciasMin" class="form-control" required/>
+                <label>Descripción Categoría</label>
+                <input type="text" name="descripcionCategoria" class="form-control" required/>
+                <br>
+                <button type="submit" class="btn btn-warning">Avanzada JPQL</button>
+            </form>
+        </div>
+
+        <!-- CONSULTA AVANZADA SQL -->
+        <div class="col-md-4">
+            <form th:action="@{/consultas/consultaAvanzadaSQL}" method="post">
+                <h4>Consulta Avanzada SQL</h4>
+                <label>Precio Mínimo</label>
+                <input type="number" step="0.01" name="precioMin" class="form-control" required/>
+                <label>Precio Máximo</label>
+                <input type="number" step="0.01" name="precioMax" class="form-control" required/>
+                <label>Existencias Mínimas</label>
+                <input type="number" name="existenciasMin" class="form-control" required/>
+                <label>Descripción Categoría</label>
+                <input type="text" name="descripcionCategoria" class="form-control" required/>
+                <br>
+                <button type="submit" class="btn btn-success">Avanzada SQL</button>
             </form>
         </div>
 

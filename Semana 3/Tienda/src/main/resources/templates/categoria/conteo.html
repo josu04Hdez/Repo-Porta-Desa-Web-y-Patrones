@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container mt-4">
+
+    <h3>Conteo de productos por categoría</h3>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <form th:action="@{/categoria/conteoDerivada}" method="post">
+                <label>Mínimo de productos</label>
+                <input type="number" name="minProductos" class="form-control"
+                       th:value="${minProductos}" min="0" required>
+
+                <label class="mt-2">Texto descripción</label>
+                <input type="text" name="textoDescripcion" class="form-control"
+                       th:value="${textoDescripcion}" required>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Conteo Derivada</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <form th:action="@{/categoria/conteoJPQL}" method="post">
+                <label>Mínimo de productos</label>
+                <input type="number" name="minProductos" class="form-control"
+                       th:value="${minProductos}" min="0" required>
+
+                <label class="mt-2">Texto descripción</label>
+                <input type="text" name="textoDescripcion" class="form-control"
+                       th:value="${textoDescripcion}" required>
+
+                <br>
+                <button type="submit" class="btn btn-warning">Conteo JPQL</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <form th:action="@{/categoria/conteoSQL}" method="post">
+                <label>Mínimo de productos</label>
+                <input type="number" name="minProductos" class="form-control"
+                       th:value="${minProductos}" min="0" required>
+
+                <label class="mt-2">Texto descripción</label>
+                <input type="text" name="textoDescripcion" class="form-control"
+                       th:value="${textoDescripcion}" required>
+
+                <br>
+                <button type="submit" class="btn btn-success">Conteo SQL</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div th:if="${conteos != null and !conteos.empty}">
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Categoría</th>
+                <th>Imagen</th>
+                <th>Cantidad Productos</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${conteos}">
+                <td th:text="${c.idCategoria}"></td>
+                <td th:text="${c.descripcion}"></td>
+                <td>
+                    <img th:if="${c.rutaImagen != null}" th:src="@{${c.rutaImagen}}" height="60">
+                </td>
+                <td th:text="${c.cantidad}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${conteos == null or conteos.empty}" class="mt-3">
+        <p>No hay resultados para el filtro aplicado.</p>
+    </div>
+
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>
