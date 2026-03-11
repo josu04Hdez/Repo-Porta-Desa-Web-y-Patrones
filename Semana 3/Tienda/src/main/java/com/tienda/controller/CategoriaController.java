@@ -55,13 +55,13 @@ public class CategoriaController {
         try {
             categoriaService.delete(idCategoria);
         } catch (IllegalArgumentException e) {
-            titulo="error"; // Captura la excepción de argumento inválido para el mensaje de "no existe"
+            titulo="error";
             detalle="cateogira.error01";
         } catch (IllegalStateException e) {
-            titulo="error"; // Captura la excepción de estado ilegal para el mensaje de "datos asociados"
+            titulo="error";
             detalle="cateogira.error02";
         } catch (Exception e) {
-            titulo="error"; // Captura cualquier otra excepción inesperada
+            titulo="error";
             detalle="cateogira.error03";
         }
 
@@ -80,5 +80,61 @@ public class CategoriaController {
         model.addAttribute("categoria", categoriaOpt.get());
         return "/categoria/modifica";
     }
+
+    // PRACTICA 2
+
+    @GetMapping("/conteo")
+    public String conteo(Model model) {
+        long minProductos = 1;
+        String textoDescripcion = "";
+        var lista = categoriaService.conteoProductosJPQL(minProductos, textoDescripcion);
+
+        model.addAttribute("minProductos", minProductos);
+        model.addAttribute("textoDescripcion", textoDescripcion);
+        model.addAttribute("conteos", lista);
+
+        return "/categoria/conteo";
+    }
+
+    @PostMapping("/conteoDerivada")
+    public String conteoDerivada(@RequestParam long minProductos,
+                                 @RequestParam String textoDescripcion,
+                                 Model model) {
+
+        var lista = categoriaService.buscarPorDescripcion(textoDescripcion, minProductos);
+
+        model.addAttribute("minProductos", minProductos);
+        model.addAttribute("textoDescripcion", textoDescripcion);
+        model.addAttribute("conteos", lista);
+
+        return "/categoria/conteo";
+    }
+
+    @PostMapping("/conteoJPQL")
+    public String conteoJPQL(@RequestParam long minProductos,
+                             @RequestParam String textoDescripcion,
+                             Model model) {
+
+        var lista = categoriaService.conteoProductosJPQL(minProductos, textoDescripcion);
+
+        model.addAttribute("minProductos", minProductos);
+        model.addAttribute("textoDescripcion", textoDescripcion);
+        model.addAttribute("conteos", lista);
+
+        return "/categoria/conteo";
+    }
+
+    @PostMapping("/conteoSQL")
+    public String conteoSQL(@RequestParam long minProductos,
+                            @RequestParam String textoDescripcion,
+                            Model model) {
+
+        var lista = categoriaService.conteoProductosSQL(minProductos, textoDescripcion);
+
+        model.addAttribute("minProductos", minProductos);
+        model.addAttribute("textoDescripcion", textoDescripcion);
+        model.addAttribute("conteos", lista);
+
+        return "/categoria/conteo";
+    }
 }
- 
